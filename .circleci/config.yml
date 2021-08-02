@@ -75,12 +75,14 @@ jobs:
       - restore_cache:
           keys: [frontend-test]
       - run:
+        name: test frontend
         commands: |
           cd frontend
           npm i
-          npm run test
-       
-                
+          npm run test 
+      - save_cache:
+        paths: [backend/node_modules]
+        key: frontend-build         
   test-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -89,10 +91,14 @@ jobs:
       - restore_cache:
           keys: [backend-test]
       - run:
+        name: test backend
         commands: |
           cd backend
           npm i
           npm run test
+      - save_cache:
+                paths: [backend/node_modules]
+                key: backend-test
 
   
 
