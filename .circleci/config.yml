@@ -84,12 +84,10 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-test]
-      - run:
-          name: test backend
-          commands: |
-            cd backend
-            npm i
-            npm run test
+      - run: cd backend
+      - run: npm i
+      - run: npm run test
+          
 
 workflows:
   default:
