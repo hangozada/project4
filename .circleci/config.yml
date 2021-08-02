@@ -74,12 +74,9 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-test]
-      - run:
-          name: test frontend
-          commands: |
-            cd frontend
-            npm i
-            npm run test    
+      - run: cd frontend
+      - run: npm i
+      - run: npm run test
   test-backend:
     docker:
       - image: circleci/node:13.8.0
